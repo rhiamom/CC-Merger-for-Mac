@@ -1,0 +1,62 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CCMergerMac.MainWindow"
+        Width="640" Height="560"
+        MinWidth="560" MinHeight="540"
+        Title="CCMerger by Lazy Duchess — Mac">
+
+    <Grid Margin="22" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,*,Auto">
+
+        <!-- Source folder -->
+        <StackPanel Grid.Row="0" Spacing="6">
+            <TextBlock Text="Directory with CC to merge:" FontWeight="SemiBold" />
+            <Grid ColumnDefinitions="*,Auto">
+                <TextBox Name="FolderBox" Grid.Column="0" Watermark="Choose your Downloads folder…" />
+                <Button Name="BrowseButton" Grid.Column="1" Content="Browse…" Margin="8,0,0,0" />
+            </Grid>
+        </StackPanel>
+
+        <!-- Limits -->
+        <Grid Grid.Row="1" Margin="0,18,0,0" ColumnDefinitions="*,24,*">
+            <StackPanel Grid.Column="0" Spacing="4">
+                <TextBlock Text="Max package size (MB)" FontWeight="SemiBold" />
+                <NumericUpDown Name="PackSize" Minimum="0" Maximum="1000" Increment="10"
+                               FormatString="0" />
+                <TextBlock Text="Default: 100  ·  0 = no limit" Opacity="0.6" FontSize="12" />
+            </StackPanel>
+            <StackPanel Grid.Column="2" Spacing="4">
+                <TextBlock Text="Max files per package" FontWeight="SemiBold" />
+                <NumericUpDown Name="PackFiles" Minimum="0" Maximum="8000" Increment="100"
+                               FormatString="0" />
+                <TextBlock Text="Default: 1000  ·  0 = no limit" Opacity="0.6" FontSize="12" />
+            </StackPanel>
+        </Grid>
+
+        <TextBlock Grid.Row="2" Margin="0,12,0,0" TextWrapping="Wrap" Opacity="0.7" FontSize="12"
+                   Text="If your game crashes with higher values, use the defaults or try smaller ones." />
+
+        <CheckBox Grid.Row="3" Name="LogBox" Margin="0,14,0,0"
+                  Content="Write the contents of each merged package to text files" />
+
+        <!-- Progress block: clearly visible, not oversized -->
+        <Border Grid.Row="4" Margin="0,20,0,0" Padding="16" CornerRadius="8"
+                Background="{DynamicResource SystemControlBackgroundListLowBrush}">
+            <StackPanel Spacing="9">
+                <TextBlock Name="PercentText" Text="0%" FontSize="22" FontWeight="SemiBold"
+                           HorizontalAlignment="Center" />
+                <ProgressBar Name="Bar" Minimum="0" Maximum="100" Value="0" Height="18" />
+                <TextBlock Name="StatusText" Text="Ready." HorizontalAlignment="Center"
+                           Opacity="0.8" TextWrapping="Wrap" />
+            </StackPanel>
+        </Border>
+
+        <!-- Actions -->
+        <Grid Grid.Row="7" Margin="0,18,0,0" ColumnDefinitions="*,Auto,Auto">
+            <Button Name="CancelButton" Grid.Column="1" Content="Cancel" IsVisible="False"
+                    Margin="0,0,10,0" Padding="18,10" />
+            <Button Name="MergeButton" Grid.Column="2" Content="Merge"
+                    Padding="28,12" FontWeight="SemiBold"
+                    HorizontalContentAlignment="Center" />
+        </Grid>
+    </Grid>
+</Window>

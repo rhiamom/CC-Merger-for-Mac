@@ -1,0 +1,14 @@
+# Build output
+bin/
+obj/
+
+# macOS
+.DS_Store
+
+# IDE / editor
+.vs/
+.idea/
+*.user
+*.suo
+
+# Local app settings (created at runtime under ~/Library/Application Support)
