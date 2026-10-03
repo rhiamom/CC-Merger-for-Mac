@@ -12,3 +12,9 @@ obj/
 *.suo
 
 # Local app settings (created at runtime under ~/Library/Application Support)
+
+# Release build outputs
+build/*.app
+build/*.dmg
+build/stage/
+build/dmgstage/

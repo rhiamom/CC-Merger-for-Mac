@@ -9,6 +9,16 @@ This port targets the Aspyr **Sims 2 Super Collection** on macOS. The merge
 engine is carried over from the original essentially unchanged, so it produces
 the same `.package` output; only the Windows-specific shell has been replaced.
 
+Merging also gets around a Super Collection limit: with many thousands of loose
+packages in Downloads, the game can crash while rebuilding its catalog. One
+Downloads folder of 7,426 packages, merged into 4, loaded fine.
+
+## Download
+
+Get the `.dmg` from the [Releases](../../releases) page, open it and drag
+**CC-Merger for Mac** to Applications. It runs natively on Intel and Apple Silicon
+Macs, macOS 10.15 or later, and is signed and notarized by Apple.
+
 ## What's different from the Windows original
 
 - **Cross-platform UI** — the WinForms interface is rebuilt in
@@ -35,6 +45,21 @@ Requires the .NET 8 SDK.
 dotnet build -c Release
 dotnet run            # or run the built CCMerger.dll
 ```
+
+`build/release.sh [version]` builds, signs and notarizes the universal `.app`
+and `.dmg` (needs the developer's signing identity).
+
+### Merging from the command line
+
+For very large folders there is also a mode without a window:
+
+```sh
+dotnet bin/Release/net8.0/CCMerger.dll --merge <sourceFolder> <targetPathBase> [maxSizeMB] [maxFileCount]
+```
+
+It uses the same merge engine. The defaults are 100 MB and 1000 files per
+package; `0` means no limit for that setting. The output files get `0`, `1`, `2`…
+added to the target name.
 
 ## Usage
 
@@ -65,6 +90,7 @@ Mac port specifically:
 - Original **CCMerger** by **Lazy Duchess** — <https://github.com/LazyDuchess/CC-Merger>
 - DBPF package-reading code derived from **FreeSO**
   (<https://github.com/riperiperi/FreeSO>) and **SimUnity2**.
+- macOS port and icon © 2026 GramzeSweatshop (Rhiamom).
 
 This project as a whole is released under the **GNU General Public License v3.0**
 (see [LICENSE](LICENSE)). The DBPF engine source files under [`Engine/`](Engine/)
